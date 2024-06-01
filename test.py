@@ -49,7 +49,7 @@ def words_filter():
     res = fp.read()
   print('基于TF-IDF提取关键词结果：')
   with open('data/words_ans.txt', 'a', encoding='utf-8') as fp:
-    for x, w in anls.extract_tags(res, topK=10000, withWeight=True):
+    for x, w in anls.extract_tags(res, topK=100000, withWeight=True):
       fp.write(f'{x}\t{w}\n')
       print(f'{x}\t{w}')
 
