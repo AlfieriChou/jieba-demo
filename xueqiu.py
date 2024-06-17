@@ -23,6 +23,7 @@ def get_words():
     list = ret['statuses']
     with open('xueqiu/words.txt', 'a', encoding='utf-8') as fp:
       for item in list:
+        print(item['text'])
         fp.write(item['text'] + '\n')
 
 
@@ -72,7 +73,7 @@ def word_cloud():
 
   plt.imshow(wordcloud, interpolation='bilinear')
   plt.axis('off')
-  plt.show()
+  # plt.show()
   wordcloud.to_file('xueqiu/word_cloud.jpg')
 
 
