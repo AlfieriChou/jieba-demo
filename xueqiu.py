@@ -9,7 +9,6 @@ from PIL import Image
 from wordcloud import WordCloud
 
 
-# 爬取博客园的热门新闻
 def get_words():
   base_url = 'https://xueqiu.com/v4/statuses/user_timeline.json?page='
   header = {
