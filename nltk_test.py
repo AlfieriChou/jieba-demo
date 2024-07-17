@@ -34,7 +34,9 @@ words = [word for word in words if word not in stop_words]
 word_counts = Counter(words)
 
 # 生成词云
-wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_counts)
+wordcloud = WordCloud(
+  width=800, height=400, background_color='white'
+).generate_from_frequencies(word_counts)
 
 # 显示词云
 plt.figure(figsize=(10, 5))

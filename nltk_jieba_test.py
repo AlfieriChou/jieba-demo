@@ -7,12 +7,17 @@ from nltk.corpus import stopwords
 import string
 from wordcloud import WordCloud
 import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 from PIL import Image
+import re
 
 # 确保你已经下载了nltk的必要数据
 nltk.download('punkt')
 nltk.download('stopwords')
+
+# 设置matplotlib后台执行
+matplotlib.use('agg')
 
 # 示例中英文文章
 text = """
@@ -22,15 +27,25 @@ text = """
 自然语言处理并不是一般地研究自然语言，而在于研制能有效地实现自然语言通信的计算机系统，特别是其中的软件系统。
 """
 
+# 分离英文和中文部分（简单处理）
+english_text = re.sub(r'[^\x00-\x7F]+', ' ', text)
+chinese_text = re.sub(r'[^\u4e00-\u9fa5]+', ' ', text)
+
+
 # 英文分词
-words_en = word_tokenize(text)
+words_en = word_tokenize(english_text)
 
 # 初始化jieba
 jieba.load_userdict('data/dict.txt')
 anls.set_stop_words('data/stop_words.txt')
 
 # 中文分词
-words_zh = jieba.lcut(text)
+words_zh = jieba.lcut(chinese_text, False)
+words_zh = [
+  word
+  for word in words_zh
+  if word in jieba.dt.FREQ and len(word) > 1 and not word.isnumeric()
+]
 
 # 合并中英文分词结果
 words = words_en + words_zh
@@ -63,7 +78,7 @@ wordcloud = WordCloud(
 plt.figure(figsize=(10, 5))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
-plt.show()
+# plt.show()
 
 # 保存词云
 wordcloud.to_file('data/nltk_jieba_word_cloud.jpg')

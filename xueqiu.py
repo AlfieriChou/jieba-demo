@@ -13,7 +13,7 @@ def get_words():
   base_url = 'https://xueqiu.com/v4/statuses/user_timeline.json?page='
   header = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'cookie': 'xq_a_token=9340aab2bf1fc4365f85394da9debf5962df2db7'
+    'cookie': 'xq_a_token=9340aab2bf1fc4365f85394da9debf5962df2db7',
   }
   for i in range(100):
     url = base_url + str(i + 1) + '&user_id=5124430882'
