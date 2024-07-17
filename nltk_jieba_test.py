@@ -63,6 +63,8 @@ words = [word for word in words if word not in stop_words]
 # 统计词频
 word_counts = Counter(words)
 
+print(word_counts)
+
 # 图片背景
 maskph = np.array(Image.open('data/LuXun_black.jpg'))
 
